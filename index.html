@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DCP — Creative Production Technology Consulting with Serta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dcp-midnight:      #000531;
+      --dcp-grey:          #E6E7E8;
+      --dcp-violet:        #545DFF;
+      --dcp-green:         #20FE8F;
+      --dcp-sky:           #76BEFF;
+      --dcp-ember:         #FF8371;
+      --dcp-white:         #FFFFFF;
+      --dcp-offwhite:      #F4F5F7;
+
+      --dcp-green-a15:     rgba(32, 254, 143, 0.15);
+      --dcp-green-a30:     rgba(32, 254, 143, 0.30);
+      --dcp-violet-a20:    rgba(84, 93, 255, 0.20);
+      --dcp-violet-a10:    rgba(84, 93, 255, 0.10);
+      --dcp-ember-a20:     rgba(255, 131, 113, 0.20);
+      --dcp-sky-a20:       rgba(118, 190, 255, 0.20);
+      --dcp-midnight-a80:  rgba(0, 5, 49, 0.80);
+
+      --dcp-font:          'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+
+      --dcp-radius:        12px;
+      --dcp-radius-sm:     6px;
+      --dcp-radius-lg:     24px;
+      --dcp-max-width:     1200px;
+      --dcp-section-pad:   88px 40px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--dcp-midnight); }
+    body {
+      font-family: var(--dcp-font);
+      color: var(--dcp-white);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* — Logo lockup — */
+    .dcp-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .dcp-logo-mark {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--dcp-green);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .dcp-logo-wordmark {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 1.25;
+      color: var(--dcp-white);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-left: 1px solid rgba(255,255,255,0.25);
+      padding-left: 14px;
+    }
+
+    /* — Nav — */
+    .dcp-nav {
+      background: var(--dcp-midnight);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 68px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(32, 254, 143, 0.12);
+    }
+    .dcp-nav-status {
+      font-family: var(--dcp-font);
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dcp-nav-status .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--dcp-green);
+      box-shadow: 0 0 14px var(--dcp-green);
+    }
+
+    /* — Hero — */
+    .dcp-hero {
+      background: var(--dcp-midnight);
+      color: var(--dcp-white);
+      padding: 110px 40px 130px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dcp-gradient-dark {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 85%, rgba(84,93,255,0.55)   0%, transparent 55%),
+        radial-gradient(ellipse at 85% 15%, rgba(32,254,143,0.08)  0%, transparent 50%),
+        radial-gradient(ellipse at 50% 55%, rgba(255,131,113,0.12) 0%, transparent 60%),
+        var(--dcp-midnight);
+      pointer-events: none;
+    }
+    .dcp-hero-inner {
+      position: relative;
+      max-width: var(--dcp-max-width);
+      margin: 0 auto;
+    }
+    .dcp-eyebrow {
+      font-family: var(--dcp-font);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--dcp-green);
+      margin-bottom: 28px;
+    }
+    .dcp-hero h1 {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: 1.0;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      max-width: 1000px;
+    }
+    .dcp-hero h1 em {
+      font-style: normal;
+      color: var(--dcp-green);
+      display: block;
+    }
+    .dcp-hero p.lede {
+      font-size: 18px;
+      color: rgba(255,255,255,0.65);
+      max-width: 640px;
+      margin-bottom: 0;
+      line-height: 1.65;
+    }
+
+    /* — Generic section — */
+    .dcp-section { padding: var(--dcp-section-pad); }
+    .dcp-section--dark    { background: var(--dcp-midnight); color: var(--dcp-white); }
+    .dcp-section--light   { background: var(--dcp-grey);     color: var(--dcp-midnight); }
+    .dcp-section--violet  { background: var(--dcp-violet);   color: var(--dcp-white); }
+
+    .dcp-section-inner {
+      max-width: var(--dcp-max-width);
+      margin: 0 auto;
+    }
+
+    .dcp-section-header {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+    .dcp-section-num {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: 52px;
+      color: var(--dcp-violet);
+      line-height: 1;
+    }
+    .dcp-section--dark .dcp-section-num { color: var(--dcp-green); }
+    .dcp-section--violet .dcp-section-num { color: var(--dcp-green); }
+
+    .dcp-section-body h2 {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+    .dcp-section-body p {
+      font-size: 16px;
+      line-height: 1.72;
+      opacity: 0.85;
+      max-width: 720px;
+    }
+    .dcp-section--light .dcp-section-body p { opacity: 0.78; }
+
+    /* — Two-up framing block (Today / How it changes) — */
+    .framing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .framing-card {
+      border-radius: var(--dcp-radius-lg);
+      padding: 40px;
+      position: relative;
+    }
+    .framing-card.today {
+      background: var(--dcp-white);
+      border: 1px solid rgba(0, 5, 49, 0.08);
+      color: var(--dcp-midnight);
+    }
+    .framing-card.future {
+      background: var(--dcp-violet);
+      color: var(--dcp-white);
+    }
+    .framing-card .label {
+      font-family: var(--dcp-font);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .framing-card.today .label { color: var(--dcp-violet); }
+    .framing-card.future .label { color: var(--dcp-green); }
+    .framing-card h3 {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .framing-card p {
+      font-size: 15px;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .framing-card.today p { color: rgba(0, 5, 49, 0.72); }
+    .framing-card.future p { color: rgba(255,255,255,0.85); }
+    .framing-card p:last-child { margin-bottom: 0; }
+    .framing-card.today strong { color: var(--dcp-midnight); font-weight: 700; }
+    .framing-card.future strong { color: var(--dcp-green); font-weight: 700; }
+
+    /* — Workstreams — */
+    .ws-list { display: flex; flex-direction: column; gap: 20px; margin-top: 16px; }
+    .ws {
+      background: var(--dcp-midnight);
+      border: 1px solid rgba(84, 93, 255, 0.2);
+      border-radius: var(--dcp-radius);
+      transition: border-color 0.2s;
+      overflow: hidden;
+    }
+    .ws:hover { border-color: var(--dcp-violet); }
+    .ws.open { border-color: var(--dcp-green); }
+
+    .ws-header {
+      padding: 36px;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 72px 1fr 32px;
+      gap: 32px;
+      align-items: start;
+      user-select: none;
+    }
+
+    .ws-num {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: 52px;
+      color: var(--dcp-green);
+      line-height: 1;
+    }
+
+    .ws-title {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--dcp-white);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .ws-tag {
+      font-size: 14.5px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.55;
+    }
+
+    .ws-toggle {
+      width: 32px; height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 8px;
+      transition: transform 0.25s;
+    }
+    .ws-toggle svg {
+      width: 22px; height: 22px;
+      stroke: rgba(255,255,255,0.5);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      transition: stroke 0.2s;
+    }
+    .ws.open .ws-toggle { transform: rotate(180deg); }
+    .ws.open .ws-toggle svg { stroke: var(--dcp-green); }
+
+    .ws-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .ws.open .ws-body { max-height: 1800px; }
+
+    .ws-body-inner {
+      padding: 0 36px 40px 140px;
+    }
+
+    .ws-block { margin-bottom: 32px; }
+    .ws-block:last-child { margin-bottom: 0; }
+    .ws-label {
+      font-family: var(--dcp-font);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dcp-violet);
+      margin-bottom: 14px;
+    }
+    .ws.open .ws-block .ws-label { color: var(--dcp-violet); }
+    .ws-block p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+    }
+    .ws-list-items { list-style: none; }
+    .ws-list-items li {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.72);
+      padding: 7px 0 7px 22px;
+      position: relative;
+    }
+    .ws-list-items li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 16px;
+      width: 7px; height: 7px;
+      background: var(--dcp-green);
+      border-radius: 50%;
+    }
+
+    /* — Connect / flow — */
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .flow-step {
+      background: var(--dcp-midnight);
+      border: 1px solid rgba(84, 93, 255, 0.2);
+      border-radius: var(--dcp-radius);
+      padding: 28px 24px;
+    }
+    .flow-step.accent { border-color: var(--dcp-green); }
+    .flow-num {
+      font-family: var(--dcp-font);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dcp-violet);
+      margin-bottom: 16px;
+    }
+    .flow-step.accent .flow-num { color: var(--dcp-green); }
+    .flow-label {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--dcp-white);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .flow-detail {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* — Upside as colorfield grid — */
+    .upside-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .upside-tile {
+      border-radius: var(--dcp-radius-lg);
+      padding: 40px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .upside-tile .num {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .upside-tile h4 {
+      font-family: var(--dcp-font);
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .upside-tile p {
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    .upside-tile.green {
+      background: var(--dcp-green);
+      color: var(--dcp-midnight);
+    }
+    .upside-tile.green .num { color: rgba(0,5,49,0.55); }
+    .upside-tile.green p { color: rgba(0, 5, 49, 0.78); }
+
+    .upside-tile.violet {
+      background: var(--dcp-violet);
+      color: var(--dcp-white);
+    }
+    .upside-tile.violet .num { color: var(--dcp-green); }
+    .upside-tile.violet p { color: rgba(255,255,255,0.85); }
+
+    .upside-tile.sky {
+      background: var(--dcp-sky);
+      color: var(--dcp-midnight);
+    }
+    .upside-tile.sky .num { color: rgba(0,5,49,0.55); }
+    .upside-tile.sky p { color: rgba(0, 5, 49, 0.78); }
+
+    .upside-tile.outline {
+      background: var(--dcp-midnight);
+      color: var(--dcp-white);
+      border: 1px solid var(--dcp-green);
+    }
+    .upside-tile.outline .num { color: var(--dcp-green); }
+    .upside-tile.outline h4 { color: var(--dcp-green); }
+    .upside-tile.outline p { color: rgba(255,255,255,0.7); }
+
+    /* — Footer — */
+    .dcp-footer {
+      background: var(--dcp-midnight);
+      border-top: 1px solid rgba(32, 254, 143, 0.12);
+      padding: 60px 40px;
+      font-family: var(--dcp-font);
+    }
+    .dcp-footer-inner {
+      max-width: var(--dcp-max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .dcp-footer-locations { display: flex; gap: 28px; }
+    .dcp-footer-locations span {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .dcp-footer-copy { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+    /* — Responsive — */
+    @media (max-width: 900px) {
+      .dcp-section { padding: 64px 24px; }
+      .dcp-hero { padding: 80px 24px 96px; }
+      .dcp-section-header { grid-template-columns: 1fr; gap: 16px; }
+      .framing-grid { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .upside-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .dcp-nav { padding: 0 20px; }
+      .ws-header { grid-template-columns: 56px 1fr 24px; padding: 24px; gap: 16px; }
+      .ws-num { font-size: 38px; }
+      .ws-title { font-size: 18px; }
+      .ws-body-inner { padding: 0 24px 32px 24px; }
+      .flow { grid-template-columns: 1fr; }
+      .framing-card { padding: 28px; }
+      .upside-tile { padding: 28px; min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="dcp-nav">
+  <div class="dcp-logo">
+    <div class="dcp-logo-mark">DCP</div>
+    <div class="dcp-logo-wordmark">Doner<br>Colle<br>Partners.</div>
+  </div>
+  <div class="dcp-nav-status">
+    <span class="dot"></span>
+    Working outline
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="dcp-hero">
+  <div class="dcp-gradient-dark"></div>
+  <div class="dcp-hero-inner">
+    <div class="dcp-eyebrow">Internal · For discussion with Monica</div>
+    <h1>Creative Production<br>Technology Consulting<br><em>with Serta.</em></h1>
+    <p class="lede">A proposed method for closing a common gap between creative agencies and their in-house counterparts that allows agency thinking to easily move into execution across a brand ecosystem.</p>
+  </div>
+</section>
+
+<!-- Today / How this changes things -->
+<section class="dcp-section dcp-section--dark">
+  <div class="dcp-section-inner">
+    <div class="dcp-section-header">
+      <div class="dcp-section-num">·</div>
+      <div class="dcp-section-body">
+        <div class="dcp-eyebrow" style="color: var(--dcp-violet);">The opportunity</div>
+        <h2>Concept lands.<br>Execution drifts.</h2>
+        <p>A common gap between creative agencies and the in-house teams responsible for scaling their work. Serta has named this themselves, and there's a real opening to fix it.</p>
+      </div>
+    </div>
+
+    <div class="framing-grid">
+      <div class="framing-card today">
+        <div class="label">How it works today</div>
+        <h3>Hero in. Drift out.</h3>
+        <p>Doner produces big ideas and hero assets. Serta's in-house team executes the day-to-day churn including seasonal sales, site content, and retailer work.</p>
+        <p>What sits between is a campaign concept, hero executions, a high-level style guide, and final files.</p>
+        <p>The in-house team <strong>struggles to convert the heart of the concept into something literal that they can reproduce at scale</strong>. They also have access to high-end technology through Adobe that hasn't been activated to deliver true automation capabilities.</p>
+      </div>
+      <div class="framing-card future">
+        <div class="label">How this initiative changes things</div>
+        <h3>A consultative layer that closes the loop.</h3>
+        <p>Doner can play a consultative role that supports Serta getting the best they can out of their technology stack.</p>
+        <p>As that process is defined, it will unveil the <strong>true inputs the in-house team needs</strong> to successfully scale Doner's conceptual work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Workstreams -->
+<section class="dcp-section dcp-section--dark" style="padding-top: 32px;">
+  <div class="dcp-section-inner">
+    <div class="dcp-section-header">
+      <div class="dcp-section-num">·</div>
+      <div class="dcp-section-body">
+        <div class="dcp-eyebrow" style="color: var(--dcp-green);">The work</div>
+        <h2>How the work would happen.</h2>
+        <p>Two workstreams, sequenced. Tap a card to expand the detail.</p>
+      </div>
+    </div>
+
+    <div class="ws-list">
+
+      <div class="ws open" onclick="toggleWs(this)">
+        <div class="ws-header">
+          <div class="ws-num">01</div>
+          <div>
+            <div class="ws-title">Production tech and talent consult.</div>
+            <p class="ws-tag">Understand how the in-house team works before we change anything.</p>
+          </div>
+          <div class="ws-toggle">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+        </div>
+        <div class="ws-body">
+          <div class="ws-body-inner">
+
+            <div class="ws-block">
+              <div class="ws-label">Why this comes first</div>
+              <p>You can't design a translation system without understanding what's on the receiving end. Serta has significant Adobe investment but isn't getting the full return. The friction is partly tooling and methodology, partly capability of the team using them, and partly the structure of the work coming in.</p>
+            </div>
+
+            <div class="ws-block">
+              <div class="ws-label">What we'd do</div>
+              <ul class="ws-list-items">
+                <li>Spend time with the in-house team to understand how they work, where they get stuck, and what they need to be successful</li>
+                <li>Look at how their Adobe investment is currently deployed versus where it could be doing more</li>
+                <li>Recommend a methodology and operating approach that fits their team, their tools, and the work they're responsible for</li>
+                <li>Identify capability gaps that training, restructuring, or sequencing could close</li>
+                <li>Surface the moments where Adobe services hours could implement what we recommend</li>
+              </ul>
+            </div>
+
+            <div class="ws-block">
+              <div class="ws-label">Why us, not Adobe</div>
+              <p>Adobe will sell them tools and do some degree of configuration. We can act as a translator layer between Serta's brand, business, and team. We know the work and the business, and we can recommend an approach that's grounded in what Serta is actually trying to make.</p>
+            </div>
+
+            <div class="ws-block">
+              <div class="ws-label">What we don't do</div>
+              <p>Build anything without incremental scope. They may have Adobe hours that they can utilize, and we'd be available to support as needed.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="ws" onclick="toggleWs(this)">
+        <div class="ws-header">
+          <div class="ws-num">02</div>
+          <div>
+            <div class="ws-title">Creative-to-production translation system.</div>
+            <p class="ws-tag">Augment what Doner hands off so the in-house team has more to work with, not less to figure out.</p>
+          </div>
+          <div class="ws-toggle">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+        </div>
+        <div class="ws-body">
+          <div class="ws-body-inner">
+
+            <div class="ws-block">
+              <div class="ws-label">The shift</div>
+              <p>Today's deliverable does what it's supposed to do for a hero campaign. It doesn't do enough for a team responsible for blowing the idea out across hundreds of touchpoints. We add a layer that travels with the work and gives them what they need to extend it well.</p>
+            </div>
+
+            <div class="ws-block">
+              <div class="ws-label">What we'd add</div>
+              <ul class="ws-list-items">
+                <li>Encoded design and creative intent that reinforces and extends the style guide</li>
+                <li>Decision trees for how the system extends to formats and contexts we didn't make ourselves</li>
+                <li>Modular templates built for the Adobe ecosystem they actually use</li>
+              </ul>
+              <p style="margin-top: 16px; color: rgba(255,255,255,0.4); font-size: 13px;">More to come once Workstream 01 tells us what's actually needed.</p>
+            </div>
+
+            <div class="ws-block">
+              <div class="ws-label">Why this only works after Workstream 01</div>
+              <p>The translation layer has to fit the production environment. Designing it without seeing how their team works and what their stack supports produces another deck that looks great and dies on contact.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- How the two connect -->
+<section class="dcp-section dcp-section--dark" style="padding-top: 32px;">
+  <div class="dcp-section-inner">
+    <div class="dcp-section-header">
+      <div class="dcp-section-num">·</div>
+      <div class="dcp-section-body">
+        <div class="dcp-eyebrow" style="color: var(--dcp-green);">Sequence</div>
+        <h2>How the two connect.</h2>
+        <p>The first two steps are the work this scope covers. The last two are the downstream effects.</p>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">Step 01</div>
+        <div class="flow-label">Diagnose</div>
+        <div class="flow-detail">Their team, their stack, their workflow</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">Step 02</div>
+        <div class="flow-label">Recommend</div>
+        <div class="flow-detail">Methodology, tools, structure</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">Step 03</div>
+        <div class="flow-label">Augment</div>
+        <div class="flow-detail">Doner output reflects their inputs</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">Step 04</div>
+        <div class="flow-label">Better output</div>
+        <div class="flow-detail">Across the full brand ecosystem</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What this opens up -->
+<section class="dcp-section dcp-section--dark" style="padding-top: 32px;">
+  <div class="dcp-section-inner">
+    <div class="dcp-section-header">
+      <div class="dcp-section-num">·</div>
+      <div class="dcp-section-body">
+        <div class="dcp-eyebrow" style="color: var(--dcp-green);">The upside</div>
+        <h2>What this opens up.</h2>
+        <p>Beyond the scope itself, this initiative creates four meaningful outcomes for the agency.</p>
+      </div>
+    </div>
+
+    <div class="upside-grid">
+      <div class="upside-tile outline">
+        <div class="num">01 / Reach</div>
+        <div>
+          <h4>Larger share of brand ecosystem.</h4>
+          <p>Today we own hero work and campaign social. This positions us as the strategic operator across more of how the brand actually shows up in market.</p>
+        </div>
+      </div>
+
+      <div class="upside-tile outline">
+        <div class="num">02 / Work</div>
+        <div>
+          <h4>More high-value work.</h4>
+          <p>A better system surfaces more places where Doner's creative thinking is the right answer, not just the in-house team's bandwidth.</p>
+        </div>
+      </div>
+
+      <div class="upside-tile outline">
+        <div class="num">03 / Partnership</div>
+        <div>
+          <h4>Adobe partnership leverage.</h4>
+          <p>Recommendations naturally surface upsell paths. Stagwell's Adobe relationship turns those into commission.</p>
+        </div>
+      </div>
+
+      <div class="upside-tile outline">
+        <div class="num">04 / Position</div>
+        <div>
+          <h4>Defensible position.</h4>
+          <p>Once we're advising on the operational layer, we're harder to displace and we're shaping the brief, not just answering it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="dcp-footer">
+  <div class="dcp-footer-inner">
+    <div class="dcp-logo">
+      <div class="dcp-logo-mark">DCP</div>
+      <div class="dcp-logo-wordmark">Doner<br>Colle<br>Partners.</div>
+    </div>
+    <div class="dcp-footer-locations">
+      <span>Working outline</span>
+      <span>For discussion</span>
+    </div>
+    <div class="dcp-footer-copy">More detail available, happy to walk through together.</div>
+  </div>
+</footer>
+
+<script>
+  function toggleWs(el) { el.classList.toggle('open'); }
+</script>
+</body>
+</html>
